@@ -11,6 +11,9 @@ public class PlayerController : MonoBehaviour
     private float jumpSpeed = 10.0f;
     [SerializeField]
     private bool isPlayerOne = true;
+    [SerializeField]
+    private PlayerController OtherPlayer;
+
 
     private enum State
     {
@@ -32,6 +35,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator = null;
 
     private bool isGrounded = false;
+    private bool isOnPlayer = false;
+    private int objectsUnderPlayer = 0;
 
     void Awake()
     {
@@ -53,24 +58,36 @@ public class PlayerController : MonoBehaviour
         animator.Play("Fall");
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
         playerInput.Enable();
         moveAction.Enable();
         jumpAction.Enable();
     }
 
-    void OnDisable()
+    private void OnDisable()
     {
         playerInput.Disable();
         moveAction.Disable();
         jumpAction.Disable();
     }
 
-
-    void stateTransition(State newState)
+    int GetState()
     {
-        if (newState!=currentState)
+        return (int)currentState;
+    }
+
+    public void SetGrounded(bool grounded, bool onPlayer, int objectCount)
+    {
+        isGrounded = grounded;
+        isOnPlayer = onPlayer;
+        objectsUnderPlayer = objectCount;
+    }
+
+
+    private void stateTransition(State newState)
+    {
+        if (newState != currentState)
         {
             State oldState = currentState;
             currentState = newState;
@@ -92,7 +109,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void stateLogic()
+    private void stateLogic()
     {
         if (currentState == State.idle)
         {
@@ -146,45 +163,18 @@ public class PlayerController : MonoBehaviour
         }
         sprite.flipX = facingLeft;
         stateLogic();
-        GroundCheck();
     }
 
     void OnJump(InputAction.CallbackContext context)
     {
-        if (isGrounded)
+        if (isGrounded && !(isOnPlayer && objectsUnderPlayer == 1 &&
+        (OtherPlayer.GetState() == (int)State.jump || OtherPlayer.GetState() == (int)State.fall)))
         {
             stateTransition(State.jump);
             rigidbody.linearVelocityY = jumpSpeed;
         }
     }
 
-
-    void GroundCheck()
-    {
-        float rayLength = 0.02f;
-        float rayDistanceFromCenter = 0.48f;
-        float rayYOffset = 0.01f;
-        Vector3 leftPos = transform.position;
-        leftPos.x -= rayDistanceFromCenter;
-        leftPos.y -= rayYOffset;
-        Vector3 rightPos = transform.position;
-        rightPos.x += rayDistanceFromCenter;
-        rightPos.y -= rayYOffset;
-
-
-        bool leftSide = Physics2D.Raycast(leftPos, Vector2.down, rayLength, LayerMask.GetMask("CanStandOn"));
-        Debug.DrawRay(leftPos, Vector2.down * rayLength, Color.red);
-        bool rightSide = Physics2D.Raycast(rightPos, Vector2.down, rayLength, LayerMask.GetMask("CanStandOn"));
-        Debug.DrawRay(rightPos, Vector2.down * rayLength, Color.red);
-
-        if (rightSide || leftSide)
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-    }
+    
 
 }

@@ -6,7 +6,9 @@ public class ToggleBlock : MonoBehaviour
     private Rigidbody2D rigidbody = null;
     private SpriteRenderer sprite = null;
 
-    private Color disabledColor = new Color(1f, 1f, 1f, 0.2f);
+    [SerializeField]
+    private Color enabledColor = new Color(1f,1f,1f,1f);
+    private Color disabledColor;
     private bool isEnabled;
     [SerializeField]
     private bool enabledByDefault = true;
@@ -18,6 +20,8 @@ public class ToggleBlock : MonoBehaviour
         isEnabled = enabledByDefault;
         rigidbody = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        disabledColor = enabledColor;
+        disabledColor.a = 0.2f;
         updateComponents();
     }
 
@@ -41,7 +45,7 @@ public class ToggleBlock : MonoBehaviour
         if (isEnabled)
         {
             rigidbody.simulated = true;
-            sprite.color = Color.white;
+            sprite.color = enabledColor;
         }
         else
         {
