@@ -20,7 +20,7 @@ public class ButtonSwitch : MonoBehaviour
     {
         if (collision != null && collision.gameObject != null)
         {
-            if (collision.gameObject.tag == "Crate" || collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Crate" || collision.gameObject.tag == "Player2")
             {
                 if (objectsOnButton == 0)
                 {
@@ -34,7 +34,7 @@ public class ButtonSwitch : MonoBehaviour
     {
         if (collision != null && collision.gameObject != null)
         {
-            if (collision.gameObject.tag == "Crate" || collision.gameObject.tag == "Player")
+            if (collision.gameObject.tag == "Crate" || collision.gameObject.tag == "Player2")
             {
                 if(objectsOnButton == 1)
                 {
@@ -44,7 +44,7 @@ public class ButtonSwitch : MonoBehaviour
             }
         }
     }
-    bool IsPressed()
+    public bool IsPressed()
     {
         if (objectsOnButton > 0)
         {

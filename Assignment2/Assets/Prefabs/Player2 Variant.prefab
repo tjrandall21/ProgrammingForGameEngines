@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 845645436795703806, guid: 133d18eea8c18674a9aace6b6779a717, type: 3}
+      propertyPath: m_TagString
+      value: Player2
+      objectReference: {fileID: 0}
     - target: {fileID: 1329545296823073939, guid: 133d18eea8c18674a9aace6b6779a717, type: 3}
       propertyPath: m_Controller
       value: 
@@ -59,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 5145683374982865974, guid: 133d18eea8c18674a9aace6b6779a717, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6132110196835984960, guid: 133d18eea8c18674a9aace6b6779a717, type: 3}
+      propertyPath: jumpSpeed
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6132110196835984960, guid: 133d18eea8c18674a9aace6b6779a717, type: 3}
       propertyPath: isPlayerOne

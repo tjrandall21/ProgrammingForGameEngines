@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Crate
+  - Player2
   layers:
   - Default
   - TransparentFX
