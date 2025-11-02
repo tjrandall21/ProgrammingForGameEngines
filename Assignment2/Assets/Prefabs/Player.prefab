@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6522575478270442848}
   - component: {fileID: 1329545296823073939}
   - component: {fileID: 1752194737775119036}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 10
-  jumpSpeed: 10
+  jumpSpeed: 12
   isPlayerOne: 1
 --- !u!50 &1985190482250603114
 Rigidbody2D:
@@ -122,7 +122,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.64, y: 0.72}
+  m_Size: {x: 0.48, y: 0.72}
   m_EdgeRadius: 0
 --- !u!95 &1329545296823073939
 Animator:
